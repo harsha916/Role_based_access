@@ -1,0 +1,29 @@
+{% load has_group %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if user|has_group:"customer" %}
+    <h3>Hello {{ name }}</h3>
+    <h4>As, You are customer, you have access to resource read</h4>
+    <button type="submit"> <a href="#">Read</a></button><br>
+    <button type="submit"><a href="{% url 'signOut' %}">SignOut</a></button>
+    {% elif user|has_group:"service_providers" %}
+    <h3>Hello {{ name }}</h3>
+    <h4>As, You are service provider, you have access to extra resources like write and delete</h4>
+    <button type="submit"> <a href="#">Read</a></button><br>
+    <button type="submit"><a href="#">Write</a></button><br>
+    <button type="submit"> <a href="#">Delete</a></button><br>
+    <button type="submit"><a href="{% url 'signOut' %}">SignOut</a></button>
+    {% else %}
+    <h1>Royal Brothers Task</h1>
+    <button type="submit"> <a href="{% url 'signUp' %}">SignUp</a></button><br>
+    <button type="submit"><a href="{% url 'signIn' %}">SignIn</a></button><br>
+    {% endif %}
+</body>
+</html>
